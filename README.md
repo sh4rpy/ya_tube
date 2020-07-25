@@ -20,6 +20,12 @@ git clone https://github.com/sh4rpy/ya_tube.git
 pip install -r requirements.txt
 ```
 
+Выполните миграции:
+
+```bash
+python manage.py migrate
+```
+
 ### Подробнее про Yatube API:
 
 Публикации:
