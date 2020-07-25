@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} Последние обновления {% endblock %}
+
+{% block content %}
+{% load cache %}
+<main role="main" class="container">
+    <div class="table">
+        {% include "posts/menu.html" with follow=True %}
+
+        <h1>Избранные авторы</h1>
+
+        <!-- Вывод ленты записей -->
+        <!-- Здесь добавить кэш 20с -->
+        {% if page %}
+            {% for post in page %}
+            <!-- Вот он, новый include! -->
+            {% include "posts/post_item.html" with post=post %}
+            {% endfor %}
+        {% else %}
+            <h5>Вы не подписаны ни на одного автора!</h5>
+            <p>Подпишитесь на понравившегося Вам автора, чтобы его записи попадали в избранное.</p>
+        {% endif %}
+
+        <!-- Вывод паджинатора -->
+        {% if page.has_other_pages %}
+        {% include "paginator.html" with items=page paginator=paginator%}
+        {% endif %}
+
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,10 @@
+<div class="card mb-3 mt-1 shadow-sm">
+    <!-- Отображение текста поста -->
+    <div class="card-body">
+        <p class="card-text">
+            <a href="{% url 'group' group.slug %}"><strong>{{ group.title }}</strong></a>
+                <br>
+                <strong></strong> {{ group.description }}
+        </p>
+    </div>
+</div>

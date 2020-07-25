@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Записи сообщества {{ group.title }} {% endblock %}
+
+{% block content %}
+    <h1>{{ group.title }}</h1>
+    <p>{{ group.description }}</p>
+    <p>Администратор группы: <a href="{% url 'profile' group.author %}"><strong>@{{ group.author }}</strong></a></p>
+
+    {% for post in page %}
+        {% include "posts/post_item.html" with post=post %}
+    {% endfor %}
+    {% if request.user == group.author %}
+    <a class="btn btn-primary" href="{% url 'group_edit' group.slug %}" role="button">
+        Редактировать группу
+    </a>
+    <a class="btn btn-danger" href="{% url 'delete_group' group.slug %}" role="button">
+        Удалить группу
+    </a>
+    {% endif %}
+    {% if page.has_other_pages %}
+        {% include "paginator.html" with items=page paginator=paginator%}
+    {% endif %}
+{% endblock %}
