@@ -20,6 +20,12 @@ git clone https://github.com/sh4rpy/ya_tube.git
 pip install -r requirements.txt
 ```
 
+Создайте файл .env в одной директории с файлом settings.py. Создайте в нем переменную окружения  SECRET_KEY, которой присвойте скопированный ключ с [сайта генерация ключей](https://djecrety.ir). Выглядеть файл должен так:
+
+```python
+SECRET_KEY=y%jti6sfm66#e0g^47=x961bvs%)c#t7&=2z)5dzz3a9py2x2&
+```
+
 Выполните миграции:
 
 ```bash
