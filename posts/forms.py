@@ -12,7 +12,7 @@ class PostForm(forms.ModelForm):
 class GroupForm(forms.ModelForm):
     class Meta:
         model = Group
-        fields = ['title', 'description', 'slug']
+        fields = ['title', 'description']
 
 
 class CommentForm(forms.ModelForm):

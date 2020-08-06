@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from .utils import my_slugify
+
 
 User = get_user_model()
 
@@ -24,6 +26,10 @@ class Group(models.Model):
     slug = models.SlugField(max_length=50, unique=True, verbose_name='URL')
     description = models.TextField(verbose_name='Описание')
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = my_slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
