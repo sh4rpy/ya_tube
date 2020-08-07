@@ -345,9 +345,8 @@ class TestGroup(TestCase):
         # Создаем группу
         self.client.post(reverse('create_group'),
                          {
-                             'title': 'Тестовая группа',
+                             'title': 'Тест',
                              'description': 'Проверяем создание новой группы',
-                             'slug': 'test'
                          })
 
     def test_create_group(self):
@@ -358,7 +357,7 @@ class TestGroup(TestCase):
         # Проверяем, появилась ли группа на старнице групп
         response = self.client.get(reverse('groups'))
         self.assertContains(
-            response, 'Тестовая группа', status_code=200,
+            response, 'Тест', status_code=200,
             count=1, msg_prefix='Группа не найдена',
             html=False
         )
@@ -373,7 +372,7 @@ class TestGroup(TestCase):
         # Проверяем, удалилась ли группа на старнице групп
         response = self.client.get(reverse('groups'))
         self.assertNotContains(
-            response, 'Тестовая группа',
+            response, 'Тест',
             status_code=200,
             msg_prefix='Группа найдена, а не должна',
             html=False
@@ -389,7 +388,6 @@ class TestGroup(TestCase):
                          {
                              'title': 'Изменили название группы',
                              'description': 'Изменили описание группы',
-                             'slug': 'test'
                          }
                          )
         # Проверяем, изменилась ли группа на старнице групп
@@ -402,7 +400,7 @@ class TestGroup(TestCase):
         # Проверяем, что группа до изменений не остается на странице групп
         response = self.client.get(reverse('groups'))
         self.assertNotContains(
-            response, 'Тестовая группа',
+            response, 'Тест',
             status_code=200,
             msg_prefix='Группа найдена, а не должна',
             html=False
