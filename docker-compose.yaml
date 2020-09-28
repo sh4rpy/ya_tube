@@ -1,0 +1,40 @@
+version: '3.8'
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    env_file:
+      - ./yatube/.env
+  web:
+    build: .
+    restart: always
+    command: gunicorn yatube.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/code/static
+      - media_volume:/code/media
+    expose:
+      - 8000
+    depends_on:
+      - db
+    env_file:
+      - ./yatube/.env
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/code/static
+      - media_volume:/code/media
+    ports:
+      - 8000:80
+    depends_on:
+      - web

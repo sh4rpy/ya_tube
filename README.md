@@ -11,26 +11,28 @@
 Склонируйте репозиторий:
 
 ```bash
-git clone https://github.com/sh4rpy/ya_tube.git
+git clone https://github.com/sh4rpy/yatube.git
 ```
 
-Установите зависимости:
-
-```bash
-pip install -r requirements.txt
-```
-
-Создайте файл .env в одной директории с файлом settings.py. Создайте в нем переменную окружения  SECRET_KEY, которой присвойте скопированный ключ с [сайта генерация ключей](https://djecrety.ir). Выглядеть файл должен так:
+Создайте файл .env в одной директории с файлом settings.py. Создайте в нем переменную окружения  SECRET_KEY, которой присвойте скопированный ключ с [сайта генерации ключей](https://djecrety.ir). Далее добавьте переменные для работы с базой данных. Выглядеть файл должен так:
 
 ```python
-SECRET_KEY=y%jti6sfm66#e0g^47=x961bvs%)c#t7&=2z)5dzz3a9py2x2&
+SECRET_KEY=скопированный_ключ
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=имя_базы
+DB_USER=юзернейм
+DB_PASSWORD=пароль
+DB_HOST=db # имя контейнера базы данных
+DB_PORT=порт
 ```
 
-Выполните миграции:
+Запустите **docker-compose** командной:
 
 ```bash
-python manage.py migrate
+docker-compose up
 ```
+
+Сервис станет доступен по адресу [http://0.0.0.0:8000](http://0.0.0.0:8000).
 
 ### Подробнее про Yatube API:
 
