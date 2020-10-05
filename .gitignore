@@ -4,7 +4,6 @@ venv/
 *.env
 .env
 
-api/migrations
 media/*
 posts/migrations
 posts/static
