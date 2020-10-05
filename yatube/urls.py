@@ -4,7 +4,6 @@ from django.contrib.flatpages import views
 from django.conf.urls import handler404, handler500
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
 
 
 handler404 = "posts.views.page_not_found"
@@ -24,8 +23,6 @@ urlpatterns = [
          {'url': '/about-spec/'}, name='about_spec'),
     # import из приложения posts
     path('', include('posts.urls')),
-    # api
-    path('api/', include('api.urls')),
 ]
 
 if settings.DEBUG:
