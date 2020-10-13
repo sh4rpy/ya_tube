@@ -1,2 +1,2 @@
-*.js linguist-language=Python
+*.html linguist-language=Python
 static/* linguist-vendored
